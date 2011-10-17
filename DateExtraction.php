@@ -1,6 +1,6 @@
 <?php
 
-require_once NITBCN_PATH . "application/libraries/similares/QueryEncoder.php";
+require_once "QueryEncoder.php";
 
 class DateExtraction
 {
@@ -290,12 +290,9 @@ class DateExtraction
 }
 
 /*
-//MANUAL TESTS  --uncomment to test (TODO: 1/aExpectedResults to automate this test; 2/add tests for all months)
+//MANUAL TESTS  --uncomment to test 
+//TODO: 1/add an array with expected results to automate this test; 2/add tests for all months and all the languages supported
 ini_set("memory_limit","128M");
-define('NITBCN_PATH','/var/www/nitbcn/');
-require_once NITBCN_PATH . "application/libraries/similares/QueryEncoder.php";
-require_once NITBCN_PATH . "application/libraries/MyOut.php";
-//define('NITBCN_PATH','/var/www/nitbcn/');
 $de = new DateExtraction();
 $de->test();
  */
