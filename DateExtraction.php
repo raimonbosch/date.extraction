@@ -16,12 +16,9 @@ class DateExtraction
 
     function set_debug($debug){
         $this->debug = $debug;
-        $this->myOut->debug = $debug;
     }
 
     function init(){
-
-        $this->myOut = new MyOut($this->debug);
 
         $this->aMatches = array(
             "lNFYN" => array("l","d","F","Y","H"),
@@ -138,12 +135,10 @@ class DateExtraction
     }
 
     function isN($word){
-        $this->myOut->debug("word:$word");
         for($i = 0; $i < strlen($word); $i++){
             $c = $word[$i];
-            $this->myOut->debug("c:$c => isset(aNumbers[$c])? => '" . isset($this->aNumbers[$c]) . "'");
+            //echo("c:$c => isset(aNumbers[$c])? => '" . isset($this->aNumbers[$c]) . "'");
             if(!isset($this->aNumbers[$c])){
-                $this->myOut->debug("false!");
                 if($i == (strlen($word) -1) && strlen($word) > 1 && ($c === "h" || $c === "H") ){
                     return array(true,strlen($word), str_replace(array("h","H"), "", $word));
                 }
@@ -151,7 +146,6 @@ class DateExtraction
             }
         }
 
-        $this->myOut->debug("true!");
         return array(true,strlen($word),$word);
     }
 
@@ -179,12 +173,12 @@ class DateExtraction
         foreach($aWords as $word){
 
             list($isN,$length,$word_fixed) = $this->isN($word);
-            $this->myOut->debug("isN($word)? => ('$isN',$length,'$word_fixed')");
+            //echo("isN($word)? => ('$isN',$length,'$word_fixed')");
 
             if(!$isN){
 
                 list($word_e,$typeP) = $this->categorizeP($word);
-                $this->myOut->debug("categorizeP($word)? => ('$word_e','$typeP')");
+                //echo("categorizeP($word)? => ('$word_e','$typeP')");
                 
                 if($typeP !== FALSE){
                     $aStates[] = array("word" => $word_e, "state" => $typeP);
@@ -198,13 +192,13 @@ class DateExtraction
             }
         }
 
-        $this->myOut->debug("aStates(in):" . print_r($aStates, true));
-        $this->myOut->debug("aCode:$aCode");
+        //echo("aStates(in):" . print_r($aStates, true));
+        //echo("aCode:$aCode");
 
         if(isset($this->aMatches[$aCode])){
 
             $aMatch = $this->aMatches[$aCode];
-            $this->myOut->debug("aMatch($aCode):" . print_r($aMatch,true));
+            //echo("aMatch($aCode):" . print_r($aMatch,true));
             
             foreach($aMatch as $i => $s){
                 if(isset($aStates[$i])){
@@ -213,7 +207,7 @@ class DateExtraction
             }
         }
 
-        $this->myOut->debug("aStates(out):" . print_r($aStates,true));
+        //echo("aStates(out):" . print_r($aStates,true));
         
         $ts = $this->get_time($aStates);
         return date('Y-m-d H:i:s', $ts);
