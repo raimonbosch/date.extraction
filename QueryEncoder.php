@@ -1,7 +1,5 @@
 <?php
 
-require_once "Utf8Utils.class.php";
-
 class QueryEncoder
 {
     public static function arregla_caracteres_raros($str)
