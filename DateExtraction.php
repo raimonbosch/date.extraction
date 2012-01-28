@@ -1,7 +1,7 @@
 <?php
 
-require_once "QueryEncoder.php"
-require_once "MyOut.php"
+require_once "QueryEncoder.php";
+require_once "MyOut.php";
 
 class DateExtraction
 {
@@ -359,8 +359,8 @@ class DateExtraction
 
 //MANUAL TESTS  --uncomment to test
 //TODO: Use an array with expected results to assert all the outputs for this test
- /*ini_set("memory_limit","128M");
+  ini_set("memory_limit","128M");
   $de = new DateExtraction();
   //$de->set_debug(true);
-  $de->test(); */
+  $de->test();
 ?>

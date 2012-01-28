@@ -2,7 +2,7 @@
 
 class QueryEncoder
 {
-    public static function arregla_caracteres_raros($str)
+    public static function clean_strange_chars($str)
     {
         $input_str = $str;
         //quitamos caracteres especiales (el punto no lo quitamos porque ya se elimina con la regular si creemos que no es necesario indexarlo)
